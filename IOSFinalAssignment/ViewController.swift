@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -18,6 +19,11 @@ class ViewController: UIViewController {
     @IBOutlet var priceTxt: UITextField!
     
     @IBOutlet var id: UITextField!
+    
+    
+    
+    
+    
     
     
     @IBOutlet var Desc: UITextView!
@@ -46,10 +52,10 @@ class ViewController: UIViewController {
             }
         
         
-//        nameTxt.text = "\(Product.pdts)"
-//        id.text = "\(Product.pdts)"
+//      nameTxt.text = "\(Product.pdts)"
+//       id.text = "\(Product.pdts)"
 //        priceTxt.text = "\(Product.pdts)"
-        //Desc.text = "\(Product.pdts)"
+//        //Desc.text = "\(Product.pdts)"
         
         
         
