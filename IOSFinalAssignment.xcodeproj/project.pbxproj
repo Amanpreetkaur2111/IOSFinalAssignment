@@ -14,6 +14,8 @@
 		BD4AB51623DBB30D00E5D795 /* IOSFinalAssignment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD4AB51423DBB30D00E5D795 /* IOSFinalAssignment.xcdatamodeld */; };
 		BD4AB51823DBB30E00E5D795 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD4AB51723DBB30E00E5D795 /* Assets.xcassets */; };
 		BD4AB51B23DBB30E00E5D795 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4AB51923DBB30E00E5D795 /* LaunchScreen.storyboard */; };
+		BD4AB52323DBB6DB00E5D795 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4AB52223DBB6DB00E5D795 /* Product.swift */; };
+		BD4AB52523DBB91600E5D795 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4AB52423DBB91600E5D795 /* ProductTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		BD4AB51723DBB30E00E5D795 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD4AB51A23DBB30E00E5D795 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD4AB51C23DBB30E00E5D795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD4AB52223DBB6DB00E5D795 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		BD4AB52423DBB91600E5D795 /* ProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				BD4AB51923DBB30E00E5D795 /* LaunchScreen.storyboard */,
 				BD4AB51C23DBB30E00E5D795 /* Info.plist */,
 				BD4AB51423DBB30D00E5D795 /* IOSFinalAssignment.xcdatamodeld */,
+				BD4AB52223DBB6DB00E5D795 /* Product.swift */,
+				BD4AB52423DBB91600E5D795 /* ProductTableViewController.swift */,
 			);
 			path = IOSFinalAssignment;
 			sourceTree = "<group>";
@@ -143,7 +149,9 @@
 			files = (
 				BD4AB51023DBB30D00E5D795 /* ViewController.swift in Sources */,
 				BD4AB51623DBB30D00E5D795 /* IOSFinalAssignment.xcdatamodeld in Sources */,
+				BD4AB52323DBB6DB00E5D795 /* Product.swift in Sources */,
 				BD4AB50C23DBB30D00E5D795 /* AppDelegate.swift in Sources */,
+				BD4AB52523DBB91600E5D795 /* ProductTableViewController.swift in Sources */,
 				BD4AB50E23DBB30D00E5D795 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
