@@ -13,20 +13,12 @@ class ViewController: UIViewController {
 
     var pro_duct: [Product]?
     
+    var viewContext : NSManagedObjectContext?
     
     @IBOutlet var nameTxt: UITextField!
-    
     @IBOutlet var priceTxt: UITextField!
-    
     @IBOutlet var id: UITextField!
-    
-    
-    
-    
-    
-    
-    
-    @IBOutlet var Desc: UITextView!
+     @IBOutlet var Desc: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +44,14 @@ class ViewController: UIViewController {
             }
         
         
-//      nameTxt.text = "\(Product.pdts)"
-//       id.text = "\(Product.pdts)"
-//        priceTxt.text = "\(Product.pdts)"
-//        //Desc.text = "\(Product.pdts)"
+    nameTxt.text = "\(product1.productname)"
+     id.text = "\(product1.productid)"
+        priceTxt.text = "\(product1.productprice)"
+        Desc.text = "\(product1.productdescription)"
+        
+       
+        
+        
         
         
         
