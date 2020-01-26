@@ -9,12 +9,29 @@
 import UIKit
 import CoreData
 
-class ProductTableViewController: UITableViewController {
+class ProductTableViewController: UITableViewController,UISearchResultsUpdating {
     
-    var pro_duct: [Product]?
+    
+    
+    var context: NSManagedObjectContext?
+    let searchController = UISearchController(searchResultsController: nil)
+    @IBOutlet var search: UISearchBar!
+    var r : [NSManagedObject]?
+    var pro: Product?
+    var filterProduct = [Product]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        navigationItem.searchController = searchController
+        
+    
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,6 +44,23 @@ class ProductTableViewController: UITableViewController {
         
         
     }
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        let search = searchController.searchBar
+         filterProduct(search.text!)
+        
+}
+    func filterProduct(_ searchText: String) {
+        filterProduct = Product.pdts.filter({ (pro: Product) -> Bool in
+            return pro.productname.uppercased().contains(searchText.uppercased())
+        })
+        tableView.reloadData()
+    }
+    
+   
+       
+    
+    
 
     // MARK: - Table view data source
 
@@ -37,33 +71,63 @@ class ProductTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Product.pdts.count ?? 0
         
-    }
+         
+                     return Product.pdts.count ?? 0
+                    
+                }
+        //        return productsData.count ?? 0
+    
+    
+    func g_Product()-> Product{
+              
+           return pro!
+          }
+            
+
+        
+        
+       
+        
+    
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         
        let cell  = tableView.dequeueReusableCell(withIdentifier: "producttable",for: indexPath)
+        let pro =  Product.pdts[indexPath.row]
+       
         
-        cell.textLabel?.text = Product.pdts[indexPath.row].productname
-        return cell// Configure the cell...
+        cell.textLabel?.text = pro.productname
+        cell.detailTextLabel?.text = "\(pro.productprice)"
+         return cell
+         
+    
+//
+//        cell.textLabel?.text = Product.pdts[indexPath.row].productname
+//        return cell// Configure the cell...
 
         // Configure the cell...
 
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pro = Product.pdts[indexPath.row]
+    }
+   
+           
+    
+    
     
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
     /*
     // Override to support editing the table view.
@@ -92,14 +156,24 @@ class ProductTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if var vc = segue.destination as? ViewController {
+            
+                        vc.delegate = self
+        
+        
+        
     }
-    */
+    
+
+
+}
 
 }

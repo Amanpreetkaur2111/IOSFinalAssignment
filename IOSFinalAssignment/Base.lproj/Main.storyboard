@@ -57,6 +57,8 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="SaveData:" destination="3r0-h9-1PV" eventType="touchUpInside" id="IgI-9o-6si"/>
+                                    <action selector="SaveProduct:" destination="3r0-h9-1PV" eventType="touchUpInside" id="BQg-DW-VDZ"/>
                                     <segue destination="kmd-fp-VnY" kind="show" id="Smf-iY-mEY"/>
                                 </connections>
                             </button>
@@ -68,7 +70,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yaj-dw-Edd">
-                                <rect key="frame" x="189" y="118" width="149" height="34"/>
+                                <rect key="frame" x="189" y="106" width="149" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -89,9 +91,11 @@
                         <outlet property="id" destination="Dlf-zK-aW4" id="ROD-L3-ASQ"/>
                         <outlet property="nameTxt" destination="Yaj-dw-Edd" id="fjq-FN-fUD"/>
                         <outlet property="priceTxt" destination="rhw-Rr-kUS" id="NKA-Yf-Zp7"/>
+                        <outlet property="showpro" destination="HGG-Er-dQU" id="U8B-sG-LOt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="3r0-h9-1PV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-154.40000000000001" y="490.70464767616198"/>
         </scene>
@@ -103,14 +107,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="F1E-wV-RFs">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="producttable" id="cPP-wb-WLQ">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cPP-wb-WLQ" id="rp5-QY-8D6">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="LK3-Wf-fpm"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -119,6 +131,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="xqK-zA-nW8"/>
+                    <connections>
+                        <outlet property="search" destination="F1E-wV-RFs" id="Yrx-MO-P2B"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMK-iW-zlg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -146,6 +161,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ovx-RY-UjM"/>
+        <segue reference="Smf-iY-mEY"/>
+        <segue reference="8pe-ON-c1Q"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,8 +11,10 @@ import CoreData
 
 class ViewController: UIViewController {
 
-    var pro_duct: [Product]?
+    var pro_duct: Product?
+     var delegate : ProductTableViewController?
     
+    @IBOutlet var showpro: UIBarButtonItem!
     var viewContext : NSManagedObjectContext?
     
     @IBOutlet var nameTxt: UITextField!
@@ -23,41 +25,159 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        pro_duct = delegate?.g_Product()
         
-        var  product1 = Product(productid: 1, productname: "MacBook", productdescription: "Needed", productprice: 100)
-        var  product2 = Product(productid: 2, productname: "Laptop", productdescription: "need", productprice: 10)
-        var  product3 = Product(productid: 3, productname: "Microwave", productdescription: "required", productprice: 10)
-        var  product4 = Product(productid: 4, productname: "AC", productdescription: "necessary", productprice: 10)
-        var  product5 = Product(productid: 5, productname: "Mobile", productdescription: "update", productprice: 900)
-        var  product6 = Product(productid: 6, productname: "Images", productdescription: "something", productprice: 800)
-        var  product7 = Product(productid: 7, productname: "Bottle", productdescription: "super", productprice: 500)
-        var  product8 = Product(productid: 8, productname: "Mouse", productdescription: "fifth", productprice: 700)
-        var  product9 = Product(productid: 9, productname: "Keyboard", productdescription: "sixth", productprice: 600)
-        var  product10 = Product(productid: 10, productname: "Perfume", productdescription: "eight", productprice: 120)
+        if Product.pdts.count > 9 {
+        return
             
-        pro_duct =  [product1,product2,product3,product4,product5,product6,product7,product8,product9,product10]
+        } else
+        {
+        
+        Product.pdts.append(Product(productid: 1, productname: "MacBook", productdescription: "Needed", productprice: 100))
+        Product.pdts.append(Product(productid: 2, productname: "Laptop", productdescription: "need", productprice: 10))
+        Product.pdts.append(Product(productid: 3, productname: "Microwave", productdescription: "required", productprice: 10))
+        Product.pdts.append(Product(productid: 4, productname: "AC", productdescription: "necessary", productprice: 10))
+       Product.pdts.append(Product(productid: 5, productname: "Mobile", productdescription: "update", productprice: 900))
+        Product.pdts.append(Product(productid: 6, productname: "Images", productdescription: "something", productprice: 800))
+       Product.pdts.append(Product(productid: 7, productname: "Bottle", productdescription: "super", productprice: 500))
+        Product.pdts.append(Product(productid: 8, productname: "Mouse", productdescription: "fifth", productprice: 700))
+       Product.pdts.append(Product(productid: 9, productname: "Keyboard", productdescription: "sixth", productprice: 600))
+        Product.pdts.append(Product(productid: 10, productname: "Perfume", productdescription: "eight", productprice: 120))
             
-            for p in pro_duct!{
+            
+        }
+        
+    }
+            
+       override func viewDidAppear(_ animated: Bool) {
+              if pro_duct == nil{
+                  pro_duct = Product.pdts.first
                 
-                Product.pdts.append(p)
+              }
+        
+        
+     nameTxt.text = pro_duct?.productname
+      id.text = "\(pro_duct!.productid)"
+    priceTxt.text = "\(pro_duct!.productprice)"
+        Desc.text = pro_duct?.productdescription
+        
+        clearCoreData()
+         loadCoreData()
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(Savedata), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        
+}
+    
+   @objc func Savedata(){
+        
+        clearCoreData()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        viewContext = context
+        
+        for data in Product.pdts {
+            
+            let list = NSEntityDescription.insertNewObject(forEntityName: "Products", into: context)
+            
+            list.setValue(data.productname, forKey: "productname")
+                list.setValue(data.productid, forKey: "productid")
+                list.setValue(data.productprice, forKey: "productprice")
+                list.setValue(data.productdescription, forKey: "productdescription")
+            
+            do{
                 
+                try context.save()
+            } catch{
+                print(error)
             }
+            
+    }
+        
+    }
+        func loadCoreData() {
+            
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Products")
+            
+            do {
+                
+                
+                let results = try context.fetch(fetchrequest)
+                if results is [NSManagedObject]{
+                    
+                    for r in results as! [NSManagedObject]{
+                        
+                        let name = r.value(forKey: "productname") as! String
+                        let id = r.value(forKey: "productid") as! Int
+                        let descr = r.value(forKey: "productdescription") as! String
+                        let price = r.value(forKey: "productprice") as! Int
+                         
+        Product.pdts.append(Product(productid: id, productname: name, productdescription: descr, productprice: price))
+                        
+                        
+                        
+                    }
+                }
+                
+                
+        } catch{
+                print(error)
+            }
+            
+            
+            
+            
+        }
         
         
-    nameTxt.text = "\(product1.productname)"
-     id.text = "\(product1.productid)"
-        priceTxt.text = "\(product1.productprice)"
-        Desc.text = "\(product1.productdescription)"
-        
-       
-        
-        
-        
-        
+        func clearCoreData(){
+            
+            
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+    let context = appDelegate.persistentContainer.viewContext
+            
+    let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Products")
+            
+            fetchrequest.returnsObjectsAsFaults = false
+            
+            do{
+                
+                
+                let result = try context.fetch(fetchrequest)
+                
+                for data in result{
+                    if let objectdata = data as? NSManagedObject{
+                        
+                        context.delete(objectdata)
+                    }
+                }
+                
+                
+                
+            } catch{
+                print(error)
+            }
+            
+            
+        }
+    
+    
         
         
     }
 
 
-}
+
+
+
 
