@@ -172,7 +172,34 @@ class ViewController: UIViewController {
         }
     
     
+    @IBAction func saveData(_ sender: Any) {
         
+   let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        
+  let context = appDelegate.persistentContainer.viewContext
+
+   var  addProduct = NSEntityDescription.insertNewObject(forEntityName: "Products", into: context)
+             
+        addProduct.setValue("\(nameTxt.text!)", forKey: "productname")
+        addProduct.setValue(Int(id.text!), forKey:"productid")
+        addProduct.setValue( "\(Desc.text!)", forKey:"productdescription")
+        addProduct.setValue(Int(priceTxt.text!), forKey: "productprice")
+
+               
+            do{
+                   try context.save()
+                   print(addProduct)
+               }catch{
+                   print(error)
+               }
+           
+        
+        
+        
+        
+    }
+    
         
     }
 

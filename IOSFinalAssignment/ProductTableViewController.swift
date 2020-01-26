@@ -73,7 +73,7 @@ class ProductTableViewController: UITableViewController,UISearchResultsUpdating 
         // #warning Incomplete implementation, return the number of rows
         
          
-                     return Product.pdts.count ?? 0
+                    return Product.pdts.count ?? 0
                     
                 }
         //        return productsData.count ?? 0
@@ -128,6 +128,9 @@ class ProductTableViewController: UITableViewController,UISearchResultsUpdating 
         return true
     }
     
+    
+    
+    
 
     /*
     // Override to support editing the table view.
@@ -160,6 +163,18 @@ class ProductTableViewController: UITableViewController,UISearchResultsUpdating 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+           tableView.reloadData()
+       }
+    
+    
+    
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
